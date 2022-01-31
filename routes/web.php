@@ -28,11 +28,15 @@ Route::middleware('auth')
     ->name('admin.')
     ->prefix('admin')
     ->group(function() {
-        Route::get('/home', 'HomeController@index')->name('home');
+        // Admin homepage
+        Route::get('/', 'HomeController@index')->name('home');
+
+        // Post route
+        Route::resource('/posts', 'PostController');
+
     });
 
 // Home front
-
 Route::get('{any?}', function () {
     return view('guests.home');
 })->where('any', '.' );

@@ -10,7 +10,7 @@
 </head>
 <body>
 
-    <div class="root"></div>
+    <div id="root"></div>
 
     {{-- JavaScript --}}
     <script src="{{ asset('js/front-office.js') }}"></script>

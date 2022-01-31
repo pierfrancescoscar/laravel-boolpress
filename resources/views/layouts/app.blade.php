@@ -34,6 +34,14 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
 
+                        <li class="nav-item">
+                            <a class="nav-item" href="{{ url('/') }}">Front office</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-item" href="{{route('admin.posts.index')}}">Posts</a>
+                        </li>
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->
