@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Post;
 
 class PostController extends Controller
@@ -45,6 +46,24 @@ class PostController extends Controller
         ]);
 
         $data = $request->all();
+
+        // Create a new post
+        $new_post = new Post();
+
+        // Generate a unique slug
+        $slug = Str::slug($data['title'], '-');
+        $count = 1;
+
+        // Loop in case of equal slugs
+        while(Post::where('slug', $slug)->first()) {
+            $slug .= '-' . $count;
+            $count++;
+        }
+
+        $data['slug'] = $slug;
+
+        $new_post->fill($data);
+
     }
 
     /**
