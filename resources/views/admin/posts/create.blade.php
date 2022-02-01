@@ -22,15 +22,20 @@
             {{-- Title --}}
             <div class="mb-5">
                 <label class="form-label" for="title">Title*</label>
-                <input class="form-control" type="text" name="title" id="title">
+                <input class="form-control" type="text" name="title" id="title" value="{{ old('title') }}">
+                @error('title')
+                <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
             {{-- Content --}}
             <div class="mb-5">
                 <label class="form-label" for="content">Content*</label>
-                <textarea class="form-control" type="text" name="content" id="content" rows="6"></textarea>
+                <textarea class="form-control" type="text" name="content" id="content" rows="6" value="{{ old('content') }}"></textarea>
+                @error('content')
+                <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
             {{-- Submit --}}
-
             <button class="btn btn-primary" type="submit">Create Post</button>
 
         </form>
