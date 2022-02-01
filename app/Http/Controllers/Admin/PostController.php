@@ -64,6 +64,8 @@ class PostController extends Controller
 
         $new_post->fill($data);
 
+        $new_post->save();
+
     }
 
     /**
