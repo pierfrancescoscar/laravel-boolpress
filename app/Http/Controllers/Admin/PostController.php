@@ -28,7 +28,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.posts.create');
     }
 
     /**
@@ -45,12 +45,18 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        return 'Show details';
+        $post = Post::where('slug', $slug)->first();
+
+        if(! $post) {
+            abort(404);
+        }
+
+        return view('admin.posts.show', compact('post'));
     }
 
     /**
