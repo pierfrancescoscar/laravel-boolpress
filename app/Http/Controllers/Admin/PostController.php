@@ -66,6 +66,8 @@ class PostController extends Controller
 
         $new_post->save();
 
+        return redirect()->route('admin.posts.show', $new_post->slug);
+
     }
 
     /**
@@ -93,7 +95,11 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::find($id);
+
+        if(! $post) {
+            abort(404);
+        }
     }
 
     /**
