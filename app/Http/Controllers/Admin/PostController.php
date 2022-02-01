@@ -100,6 +100,8 @@ class PostController extends Controller
         if(! $post) {
             abort(404);
         }
+
+        return view('admin.posts.edit', compact('post'));
     }
 
     /**
@@ -111,7 +113,41 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // Validation
+        $request->validate([
+            'title' => 'required|max:255',
+            'content' => 'required'
+        ]);
+
+        $data = $request->all();
+
+        // Update
+        $post = Post::find($id);
+
+        // Slug update ONLY IF already exists
+
+        if($data['title'] != $post->title) {
+            $slug = Str::slug($data['title'], '-');
+            $count = 1;
+            $base_slug = $slug;
+
+        // Loop if slug already exists
+        while(Post::where('slug'. $slug)->first()) {
+            $slug = $base_slug . '-' . $count;
+            $count++;
+        }
+
+        $data['slug'] = $slug;
+
+        }
+        else {
+            $data['slug'] = $post->slug;
+        }
+
+        $post->update($data);
+
+        return redirect()->route('admin.posts.show', $post->slug);
+
     }
 
     /**
