@@ -34,6 +34,9 @@ Route::middleware('auth')
         // Post route
         Route::resource('/posts', 'PostController');
 
+        // Category pages route
+        Route::get('/categories/{$id}', 'CategoryController@show')->name('category');
+
     });
 
 // Home front

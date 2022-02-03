@@ -46,7 +46,7 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required|max:255',
             'content' => 'required',
-            'category_id' => 'nullable|exists:categories.id',
+            'category_id' => 'nullable|exists:categories,id',
 
         ]);
 
@@ -98,9 +98,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        $post = Post::find($id);
+        // $post = Post::find($id);
+
         $categories = Category::all();
 
         if(! $post) {
@@ -123,7 +124,7 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required|max:255',
             'content' => 'required',
-            'category_id' => 'nullable|exists:categories.id',
+            'category_id' => 'nullable|exists:categories,id',
         ]);
 
         $data = $request->all();
