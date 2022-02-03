@@ -35,6 +35,21 @@
                 <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
+
+            {{-- Category --}}
+            <div class="mb-5">
+                <label for="category_id">Category</label>
+                <select class="form-control" name="category_id" id="category_id">
+                    <option value="">Uncategorized</option>
+                    @foreach ($categories as $category)
+                    <option value="{{ $category->id }}"  @if ($category->id == old('category_id')) selected @endif>
+                        {{ $category->name }}
+                    </option>
+                    @endforeach
+                </select>
+                    
+            </div>
+
             {{-- Submit --}}
             <button class="btn btn-primary" type="submit">Create Post</button>
 
