@@ -132,7 +132,7 @@ class PostController extends Controller
             $base_slug = $slug;
 
         // Loop if slug already exists
-        while(Post::where('slug'. $slug)->first()) {
+        while(Post::where('slug', $slug)->first()) {
             $slug = $base_slug . '-' . $count;
             $count++;
         }
