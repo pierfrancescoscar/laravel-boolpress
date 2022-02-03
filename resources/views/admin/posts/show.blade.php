@@ -7,8 +7,11 @@
         <div class="mb-5">
             {{-- Relative Category --}}
             <span class="mb-3">
-                <h5>Category:
-                {{ $post->category->name }}
+                <h5>
+                Category:
+                @if($post->category) {{$post->category->name}}
+                    @else Uncategorized
+                @endif
                 </h5>
             </span>
             {{-- Action buttons - EDIT, BACK TO ARCHIVE --}}
