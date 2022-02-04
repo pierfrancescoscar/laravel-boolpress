@@ -108,17 +108,17 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit($id)
     {
-        // $post = Post::find($id);
-
+        $post = Post::find($id);
         $categories = Category::all();
+        $tags = Tag::all();
 
         if(! $post) {
             abort(404);
         }
 
-        return view('admin.posts.edit', compact('post', 'categories'));
+        return view('admin.posts.edit', compact('post', 'categories', 'tags'));
     }
 
     /**
