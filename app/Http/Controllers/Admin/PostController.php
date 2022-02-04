@@ -75,6 +75,12 @@ class PostController extends Controller
 
         $new_post->save();
 
+        // Save into bridge table relation between new post with tag selected on form
+
+        if(array_key_exists('tags', $data)) {
+            $new_post->tags()->attach($data['tags']);
+        }
+
         return redirect()->route('admin.posts.show', $new_post->slug);
 
     }
