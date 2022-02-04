@@ -22,6 +22,8 @@ class PostController extends Controller
         // return view('posts archive');
         $tags = Tag::all();
 
+        dump($tags);
+
         return view('admin.posts.index', compact('posts', 'tags'));
     }
 
