@@ -20,8 +20,9 @@ class PostController extends Controller
     {
         $posts = Post::all();
         // return view('posts archive');
+        $tags = Tag::all();
 
-        return view('admin.posts.index', compact('posts'));
+        return view('admin.posts.index', compact('posts', 'tags'));
     }
 
     /**
@@ -165,6 +166,13 @@ class PostController extends Controller
 
         $post->update($data);
 
+        // Update relationship between updates posts and updates tags
+        if(array_key_exists('tags', $data)) {
+            $post->tags()->sync($data['tags']);
+        } else {
+            $post->tags()->detach();
+        }
+
         return redirect()->route('admin.posts.show', $post->slug);
 
     }
@@ -180,6 +188,8 @@ class PostController extends Controller
         $post = Post::find($id);
         
         $post->delete();
+
+        $post->tags()->detach();
 
         return redirect()->route('admin.posts.index')->with('deleted', $post->title);
     }
