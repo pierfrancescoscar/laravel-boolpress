@@ -101,8 +101,37 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'App'
+  name: 'App',
+  components: {},
+  data: function data() {
+    return {
+      posts: null
+    };
+  },
+  created: function created() {
+    // console.log('Get posts from API');
+    this.getPosts();
+  },
+  methods: {
+    getPosts: function getPosts() {
+      var _this = this;
+
+      // console.log('Axios call here');
+      axios.get('http://127.0.0.1:8000/api/posts').then(function (res) {
+        console.log(res);
+        _this.posts = res.data;
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -590,16 +619,15 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c("h1", [_vm._v("Our Blog")]),
+    _vm._v(" "),
+    _vm.posts
+      ? _c("div")
+      : _c("div", [_vm._v("\n        Loading posts...\n    ")]),
+  ])
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("h1", [_vm._v("Work in progress")])])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
