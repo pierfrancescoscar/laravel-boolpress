@@ -3,7 +3,11 @@
         <h1>Our Blog</h1>
 
         <div v-if="posts">
-
+            <article v-for="post in posts" :key="`post-${post.id}`" class="mb-4">
+                <h2>{{ post.title }}</h2>
+                <div class="mb-4">{{ post.created_at }}</div>
+                <p>{{ post.content }}</p>
+            </article>
         </div>
 
         <div v-else>
@@ -13,6 +17,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     name: 'App',
     components: {},
