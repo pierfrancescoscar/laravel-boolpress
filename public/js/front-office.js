@@ -1928,6 +1928,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'App',
@@ -1945,11 +1967,23 @@ __webpack_require__.r(__webpack_exports__);
     getPosts: function getPosts() {
       var _this = this;
 
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       // console.log('Axios call here');
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('http://127.0.0.1:8000/api/posts').then(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://127.0.0.1:8000/api/posts?page=".concat(page)).then(function (res) {
         console.log(res);
-        _this.posts = res.data;
+        _this.posts = res.data.data;
+        _this.pagination = {
+          current: res.data.current_page,
+          last: res.data.last_page
+        };
       });
+    },
+    formatDate: function formatDate(postDate) {
+      // console.log(postDate);
+      var date = new Date(postDate); // console.log(date);
+
+      var formatted = new Intl.DateTimeFormat('it-IT').format(date);
+      return formatted;
     }
   }
 });
@@ -2445,22 +2479,54 @@ var render = function () {
     _vm.posts
       ? _c(
           "div",
-          _vm._l(_vm.posts, function (post) {
-            return _c(
-              "article",
-              { key: "post-" + post.id, staticClass: "mb-4" },
-              [
-                _c("h2", [_vm._v(_vm._s(post.title))]),
-                _vm._v(" "),
-                _c("div", { staticClass: "mb-4" }, [
-                  _vm._v(_vm._s(post.created_at)),
-                ]),
-                _vm._v(" "),
-                _c("p", [_vm._v(_vm._s(post.content))]),
-              ]
-            )
-          }),
-          0
+          [
+            _vm._l(_vm.posts, function (post) {
+              return _c(
+                "article",
+                { key: "post-" + post.id, staticClass: "mb-4" },
+                [
+                  _c("h2", [_vm._v(_vm._s(post.title))]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "mb-4" }, [
+                    _vm._v(_vm._s(post.created_at)),
+                  ]),
+                  _vm._v(" "),
+                  _c("p", [_vm._v(_vm._s(post.content))]),
+                ]
+              )
+            }),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary mr-3",
+                attrs: { disabled: _vm.pagination.current === 1 },
+                on: {
+                  click: function ($event) {
+                    return _vm.getPosts(_vm.pagination.current - 1)
+                  },
+                },
+              },
+              [_vm._v("\n        Prev\n        ")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary mr-3",
+                attrs: {
+                  disabled: _vm.pagination.current === _vm.pagination.last,
+                },
+                on: {
+                  click: function ($event) {
+                    return _vm.getPosts(_vm.pagination.current + 1)
+                  },
+                },
+              },
+              [_vm._v("\n        Next\n        ")]
+            ),
+          ],
+          2
         )
       : _c("div", [_vm._v("\n        Loading posts...\n    ")]),
   ])
