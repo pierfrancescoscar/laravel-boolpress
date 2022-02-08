@@ -2488,7 +2488,7 @@ var render = function () {
                   _c("h2", [_vm._v(_vm._s(post.title))]),
                   _vm._v(" "),
                   _c("div", { staticClass: "mb-4" }, [
-                    _vm._v(_vm._s(post.created_at)),
+                    _vm._v(_vm._s(_vm.formatDate(post.created_at))),
                   ]),
                   _vm._v(" "),
                   _c("p", [_vm._v(_vm._s(post.content))]),
