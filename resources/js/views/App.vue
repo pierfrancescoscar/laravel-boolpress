@@ -1,12 +1,11 @@
 <template>
     <div>
-        <header>
-            Header
-        </header>
-
-        <main>Content</main>
-
-        
+        <!-- Header -->
+        <header>Header</header>
+        <!-- Content -->
+        <main>
+            <router-view></router-view>
+        </main>
     </div>
 </template>
 
