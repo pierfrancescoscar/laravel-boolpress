@@ -1,6 +1,7 @@
 <template>
   <section class="container">
       <div v-if="post">
+          
           <h1>{{ post.title }}</h1>
 
           <h3>Category: {{ post.category.name }}</h3>
@@ -9,15 +10,6 @@
 
           <p>{{ post.content }}</p>
 
-          <!-- <div class="mb-5">
-              <span
-                v-for="tag in post.tags"
-                :key="`tag-${tag.id}`"
-                class="badge badge-primary mr-2"
-              >
-                {{ tag.name }}
-              </span>
-          </div> -->
       </div>
 
       <div v-else>
