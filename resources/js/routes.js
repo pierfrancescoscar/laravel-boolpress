@@ -5,6 +5,8 @@ import VueRouter from 'vue-router';
 // Route components
 import Home from './pages/Home.vue';
 import About from './pages/About.vue';
+import Blog from './pages/Blog.vue';
+import PostDetail from './pages/PostDetail.vue';
 
 // Routes Activation in Vue
 Vue.use(VueRouter);
@@ -12,6 +14,7 @@ Vue.use(VueRouter);
 // Routes
 const router = new VueRouter ({
     mode: 'history',
+    linkActiveClass: 'active',
     routes: [
         {
         path: '/',
@@ -23,6 +26,18 @@ const router = new VueRouter ({
         path: '/about',
         name: 'about',
         component: About,
+        },
+
+        {
+        path: '/blog',
+        name: 'blog',
+        component: Blog,
+        },
+
+        {
+        path: '/blog/:slug',
+        name: 'post-detail',
+        component: PostDetail,
         },
 ]
 });

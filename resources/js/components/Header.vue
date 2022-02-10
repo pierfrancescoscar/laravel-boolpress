@@ -17,6 +17,10 @@
             <li class="nav-item active">
                 <router-link class="nav-link" :to="{ name: 'about' }">About</router-link>
             </li>
+            <!-- Blog Nav Link -->
+            <li class="nav-item active">
+                <router-link class="nav-link" :to="{ name: 'blog' }">Blog</router-link>
+            </li>
             </ul>
         </div>
         
@@ -31,5 +35,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+.active {
+    background: rgba(#fff, .1);
+}
 </style>
