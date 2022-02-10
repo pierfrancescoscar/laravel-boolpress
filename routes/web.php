@@ -42,4 +42,4 @@ Route::middleware('auth')
 // Home front
 Route::get('{any?}', function () {
     return view('guests.home');
-})->where('any', '.' );
+})->where('any', '.*' );

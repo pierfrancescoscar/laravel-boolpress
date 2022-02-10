@@ -11,6 +11,14 @@
                 <div class="mb-1">{{ formatDate(post.created_at) }}</div>
 
                 <p>{{ getExcerpt(post.content, 150) }}</p>
+                <router-link :to="{
+                    name: 'post-detail',
+                    params: {
+                        slug: post.slug
+                    }
+                }">
+                Read More
+                </router-link>
             </article>
 
             <!-- Pagination -->
