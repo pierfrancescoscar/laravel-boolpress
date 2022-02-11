@@ -2,9 +2,13 @@
   <section class="container">
       <div v-if="post">
           
-          <h1>{{ post.title }}</h1>
+          <h1 class="mb-4">{{ post.title }}</h1>
 
-          <h3>Category: {{ post.category.name }}</h3>
+          <h4 class="mb-4">{{ post.dateFormatted }}</h4>
+
+            <h3 v-if="post.category">Category: {{ post.category.name }}</h3>
+
+            <h3 v-else>Uncategorized</h3>
 
           <Tags :list="post.tags" />
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\Post;
 
 class PostController extends Controller
@@ -23,7 +24,17 @@ class PostController extends Controller
 
     // Post Details
     public function show ($slug) {
+
         $post = Post::where('slug', $slug)->with(['category', 'tags'])->first();
+
+        // if(! $post) {
+        //     abort(404);
+        // } else {
+        //     $post['dateFormatted'] = $post('created_at')->format('l d/m/y');
+        // }
+
+        // $post['dateFormatted'] = $post['created_at']->format('l d/m/y');
+       
 
         return response()->json($post);
     }

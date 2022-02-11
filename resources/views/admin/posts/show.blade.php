@@ -28,6 +28,9 @@
             <div class="col-6">
                 Here goes image
             </div>
+
+            {{-- Current Date --}}
+            {{-- <h4 class="mb-4">{{ $post->created_at->format('l d/m/Y') }}</h4> --}}
         </div>
 
         @if(!$post->tags->isEmpty())
