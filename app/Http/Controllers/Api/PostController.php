@@ -33,7 +33,7 @@ class PostController extends Controller
         //     $post['dateFormatted'] = $post('created_at')->format('l d/m/y');
         // }
 
-        // $post['dateFormatted'] = $post['created_at']->format('l d/m/y');
+        $post['dateFormatted'] = $post['created_at']->format('l d/m/y');
        
 
         return response()->json($post);
