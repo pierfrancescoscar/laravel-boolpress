@@ -12,6 +12,10 @@
 
           <Tags :list="post.tags" />
 
+          <figure v-if="post.cover">
+                <img :src="post.cover" :alt="post.title">
+          </figure>
+
           <p>{{ post.content }}</p>
 
       </div>

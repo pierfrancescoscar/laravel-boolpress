@@ -33,6 +33,12 @@ class PostController extends Controller
         //     $post['dateFormatted'] = $post('created_at')->format('l d/m/y');
         // }
 
+        if(! $post) {
+            abort(404);
+        } elseif($post->cover) {
+            $post->cover = url('storage/' . $post->cover);
+        }
+
         $post['dateFormatted'] = $post['created_at']->format('l d/m/y');
        
 
