@@ -72,6 +72,12 @@
                 @enderror
             </div>
 
+            {{-- Cover Image --}}
+            <div class="mb-3">
+                <label class="form-label" for="cover">Post image</label>
+                <input class="form-control-file "type="file" name="cover" id="cover">
+            </div>
+
             {{-- Submit --}}
             <button class="btn btn-primary" type="submit">Create Post</button>
 
