@@ -147,12 +147,24 @@ class PostController extends Controller
             'content' => 'required',
             'category_id' => 'nullable|exists:categories,id',
             'tags' => 'nullable|exists:tags,id',
+            'cover' => 'nullable|file|mimes:jpeg,bmp,png',
         ]);
 
         $data = $request->all();
 
         // Update
         $post = Post::find($id);
+
+        // Add / Update Cover Image if already exists
+
+        if(array_key_exists('cover', $data)) {
+
+            if($post->cover) {
+                Storage::delete($post->cover);
+            }
+
+            $data['cover'] = Storage::put('posts-covers', $data['cover']);
+        }
 
         // Slug update ONLY IF already exists
 

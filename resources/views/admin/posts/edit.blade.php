@@ -85,6 +85,9 @@
             {{-- Cover Image Post --}}
             <div class="mb-3">
                 <label class="form-label" for="cover">Post image</label>
+                @if($post->cover)
+                    <img src="{{ asset('storage/' . $post->cover) }}" alt="{{ $post->title }}">
+                @endif
                 <input class="form-control-file "type="file" name="cover" id="cover">
                 @error('cover')
                 <div class="text-danger">{{ $message }}</div>
