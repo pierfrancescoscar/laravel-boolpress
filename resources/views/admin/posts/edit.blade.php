@@ -18,7 +18,7 @@
             @endif
             {{-- End If Errors --}}
 
-        <form action="{{ route('admin.posts.update', $post->id) }}" method="POST">
+        <form action="{{ route('admin.posts.update', $post->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
 
@@ -79,6 +79,15 @@
                 {{-- Tag Error --}}
                 @error('tags')
                     <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+
+            {{-- Cover Image Post --}}
+            <div class="mb-3">
+                <label class="form-label" for="cover">Post image</label>
+                <input class="form-control-file "type="file" name="cover" id="cover">
+                @error('cover')
+                <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
 
