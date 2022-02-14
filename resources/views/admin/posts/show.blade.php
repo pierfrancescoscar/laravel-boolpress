@@ -25,9 +25,13 @@
                 {!! $post->content !!}
             </div>
             {{-- Image space --}}
+            @if ($post->cover)
+
             <div class="col-6">
-                Here goes image
+                <img class="img-fluid" src="{{ asset('storage/' . $post->cover) }}" alt="{{ $post->title }}">
             </div>
+
+            @endif
 
             {{-- Current Date --}}
             {{-- <h4 class="mb-4">{{ $post->created_at->format('l d/m/Y') }}</h4> --}}

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 use App\Post;
 use App\Category;
 use App\Tag;
@@ -59,6 +60,12 @@ class PostController extends Controller
         ]);
 
         $data = $request->all();
+
+        // Add Image into Post if it exists
+        if(array_key_exists('cover', $data)) {
+            $img_path = Storage::put('posts-cover', $data['cover']);
+            $data['cover'] = $img_path;
+        }
 
         // Create a new post
         $new_post = new Post();
